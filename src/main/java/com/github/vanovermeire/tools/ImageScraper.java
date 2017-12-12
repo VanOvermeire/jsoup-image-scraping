@@ -25,7 +25,6 @@ public class ImageScraper {
 
         for(Element e : getRowResultDocDivs()) {
             String front = e.getElementsByClass("dl-horizontal").get(0).getElementsByTag("dd").get(3).text();
-//            System.out.println("Got front text: " + front);
             Optional<Emperor> emperorsOptional = Emperor.getEmperor(front);
 
             if(emperorsOptional.isPresent()) {

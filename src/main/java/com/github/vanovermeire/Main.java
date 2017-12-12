@@ -1,17 +1,18 @@
 package com.github.vanovermeire;
 
 import com.github.vanovermeire.tools.*;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Log4j2
 public class Main {
 
-    private static final String OUR_URL = "http://numismatics.org/ocre/results?q=%28authority_facet%3A%22Augustus%22%20OR%20authority_facet%3A%22Nero%22%29&lang=nl&start=0";
-    //"http://numismatics.org/ocre/results?q=%28authority_facet%3A%22Augustus%22+OR+authority_facet%3A%22Claudius%22+OR+authority_facet%3A%22Gaius%2FCaligula%22+OR+authority_facet%3A%22Nero%22+OR+authority_facet%3A%22Tiberius%22%29&start=0";
-    private static final Integer PAGE_LIMIT = 62;
+    private static final String OUR_URL = "http://numismatics.org/ocre/results?q=%28authority_facet%3A%22Augustus%22+OR+authority_facet%3A%22Claudius%22+OR+authority_facet%3A%22Gaius%2FCaligula%22+OR+authority_facet%3A%22Nero%22+OR+authority_facet%3A%22Tiberius%22%29&start=0";
+    private static final Integer PAGE_LIMIT = 75;
 
     public static void main(String[] args) throws IOException {
         UrlPage url = new UrlPage(OUR_URL);
@@ -40,9 +41,8 @@ public class Main {
             start++;
         }
 
-        // augustus 1000+ coins, nero 500+, so those two
         results.forEach((key, value) -> {
-            System.out.println("(Total) Emperor " + key + " has " + value.size());
+            log.info("(Total) Emperor " + key + " has " + value.size());
         });
 
         results.forEach((key, values) ->

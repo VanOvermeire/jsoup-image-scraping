@@ -7,41 +7,31 @@ import java.util.List;
 import java.util.Optional;
 
 public enum Emperor {
-    AUGUSTUS(Lists.newArrayList("Augustus", "Avgvstvs", "Octavian"), Lists.newArrayList("Nero", "Claudius")),
-/*    TIBERIUS(Lists.newArrayList("Tiberius")),
-    CALIGULA(Lists.newArrayList("Caligula")),
-    CLAUDIUS(Lists.newArrayList("Claudius", "Claudivs")),*/
-    NERO(Lists.newArrayList("Nero"), Lists.newArrayList());
+    AUGUSTUS("Augustus", Lists.newArrayList("Head of Augustus", "Head of Octavian")),
+    TIBERIUS("Tiberius", Lists.newArrayList("Head of Tiberius")),
+    CALIGULA("Caligula", Lists.newArrayList("Head of Caligula")),
+    CLAUDIUS("Claudius", Lists.newArrayList("Head of Claudius")),
+    NERO("Nero", Lists.newArrayList("Head of Nero"));
 
-    private List<String> names;
-    private List<String> counterNames;
+    private String name;
+    private List<String> keywords;
 
-    Emperor(List<String> names, List<String> counterNames) {
-        this.names = names;
-        this.counterNames = counterNames;
+    Emperor(String name, List<String> keywords) {
+        this.name = name;
+        this.keywords = keywords;
     }
 
     public static Optional<Emperor> getEmperor(String input) {
-        Optional<Emperor> first = Arrays.stream(values()).filter(e -> e.isEmperor(input)).findFirst();
-
-        if(first.isPresent()) {
-            return first;
-        }
-
-        return Optional.empty();
+        return Arrays.stream(values()).filter(e -> e.isEmperor(input)).findFirst();
     }
 
-    // even better: regexes
     public boolean isEmperor(String input) {
         final String text = input.toLowerCase();
-        return names.stream().map(String::toLowerCase).anyMatch(text::contains)
-                && counterNames.stream().map(String::toLowerCase).noneMatch(text::contains);
+        return keywords.stream().map(String::toLowerCase).anyMatch(text::contains);
     }
 
     @Override
     public String toString() {
-        return names.get(0);
+        return name;
     }
-
-
 }
