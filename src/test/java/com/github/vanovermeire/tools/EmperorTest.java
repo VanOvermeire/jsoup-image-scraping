@@ -12,7 +12,7 @@ public class EmperorTest {
 
     @Test
     public void testAugustusPattern() {
-        String example = "something Augustus something something";
+        String example = "something head of Augustus something something";
 
         boolean b = Emperor.AUGUSTUS.isEmperor(example);
 
@@ -39,7 +39,7 @@ public class EmperorTest {
 
     @Test
     public void testNero() {
-        String example = "Nero Augustus something something";
+        String example = "head of Nero Augustus something something";
 
         boolean b = Emperor.NERO.isEmperor(example);
 
@@ -48,21 +48,20 @@ public class EmperorTest {
 
     @Test
     public void testNeroNotTrue() {
-        String example = "Claudius something something";
+        String example = "head of Claudius something something";
 
         boolean b = Emperor.NERO.isEmperor(example);
 
-        assertTrue(b);
+        assertFalse(b);
     }
 
     @Test
     public void testEmperors() {
-        String example = "Nero something something";
+        String example = "head of Nero something something";
 
         Optional<Emperor> emperor = Emperor.getEmperor(example);
 
         assertTrue(emperor.isPresent());
         assertEquals(emperor.get(), Emperor.NERO);
     }
-
 }
