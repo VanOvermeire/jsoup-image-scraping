@@ -13,18 +13,22 @@ See the article I wrote on this use case for more details.
 
 The project has a Java part, which uses JSoup to get the image links and then downloads them to an images directory.
 
-To scrape the image urls, you can run `Main` class. Alternatively, use the jar file I included and run `java -jar jsoup-image-scraping-1.0.jar`.
-And make sure you have a Java runtime!
+To scrape the image urls, you can run `Main` class. Alternatively, use the jar file I included and run:
+
+`java -jar jsoup-image-scraping-1.0.jar`,
+
+or generate a jar yourself by running:
+
+`mvn clean install`  
+
+You will, of course, need a Java Runtime (JRE) or JDK to run this Java program.
 
 ### Tensorflow
 
-Install Tensorflow using pip (`pip install tensorflow`), preferably in a virtual env. If you run into an issue with 
-tensorflow not working with 3.6, you can do install a more recent version via `pip install tf-nightly`.
-
-Download/clone the Tensorflow project from [github][1].
+1° Install Tensorflow using pip (`pip install tensorflow`), *preferably in a virtual env*. If you run into an issue with 
+tensorflow not working with 3.6, you can do install a more recent version via `pip install tf-nightly`.  
+2° Download/clone the Tensorflow project from [GitHub][1].  
+3° Now you can follow the instructions given in this [article][2].
 
 [1]:https://github.com/tensorflow/tensorflow
-
-Now you can follow the instructions given in this [article][2].
-
 [2]:https://medium.com/@linjunghsuan/create-a-simple-image-classifier-using-tensorflow-a7061635984a
